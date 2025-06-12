@@ -7,11 +7,13 @@ requires-python = ">=3.12"
 dependencies = [
     "bentoml>=1.4.15",
     "faker>=37.4.0",
-    "fastapi[cli]>=0.115.12",
+    "fastapi[standard]>=0.115.12",
     "langchain>=0.3.25",
+    "langchain-chroma>=0.2.3",
     "langchain-community>=0.3.25",
     "langchain-core>=0.3.65",
     "langchain-tests>=0.3.20",
     "langchain-tools>=0.1.34",
     "langgraph>=0.4.8",
+    "requests>=2.32.4",
 ]

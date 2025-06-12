@@ -31,6 +31,24 @@ uv add -r requirements.txt
 
 >[!NOTE] If you are using `uv`, you can skip the virtual environment setup as `uv` will handle it for you.
 
+## Load API keys
+To use the API, you need a API KEY, these are generated using the following script:
+
+Using the virtual environment, run the following command:
+```bash
+python src/utils/api_keys.py 
+```
+
+or using `uv`
+```bash
+uv run src/utils/api_keys.py 
+```
+
+Use one of this API keys to access the API:
+
+> [!NOTE] 
+> This will populate a json file inside the data folder. Once generated you can access them at the [following link](data/api_keys.json).
+
 
 
 
