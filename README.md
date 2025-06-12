@@ -49,8 +49,11 @@ Use one of this API keys to access the API:
 > [!NOTE] 
 > This will populate a json file inside the data folder. Once generated you can access them at the [following link](data/api_keys.json).
 
+## APIs used
 
+- [Google Maps Geocoding](https://developers.google.com/maps/documentation/geocoding/requests-geocoding#geocoding-lookup) for converting addresses into geographic coordinates. It offers a free tier with a limited number of requests per month.
 
+- [National Weather Service API](https://www.weather.gov/documentation/services-web-api) for retrieving weather data by providing coordinates within US. It provides a free API with no authentication required.
 
 
 

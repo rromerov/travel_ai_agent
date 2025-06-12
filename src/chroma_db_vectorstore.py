@@ -34,4 +34,4 @@ if not has_uuid_named_folder:
     chroma_vector_store.add_documents(documents=DOCUMENTS, id=UUIDS)
 
 # generate a retriever
-retriever = chroma_vector_store.as_retriever()
+retriever = chroma_vector_store.as_retriever(search_type="mmr")

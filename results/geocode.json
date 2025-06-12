@@ -1,0 +1,115 @@
+{
+  "results": [
+    {
+      "address_components": [
+        {
+          "long_name": "2",
+          "short_name": "2",
+          "types": [
+            "subpremise"
+          ]
+        },
+        {
+          "long_name": "1",
+          "short_name": "1",
+          "types": [
+            "street_number"
+          ]
+        },
+        {
+          "long_name": "Armory Street",
+          "short_name": "Armory St",
+          "types": [
+            "route"
+          ]
+        },
+        {
+          "long_name": "Metro Center",
+          "short_name": "Metro Center",
+          "types": [
+            "neighborhood",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Springfield",
+          "short_name": "Springfield",
+          "types": [
+            "locality",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Hampden County",
+          "short_name": "Hampden County",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Massachusetts",
+          "short_name": "MA",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ]
+        },
+        {
+          "long_name": "United States",
+          "short_name": "US",
+          "types": [
+            "country",
+            "political"
+          ]
+        },
+        {
+          "long_name": "01105",
+          "short_name": "01105",
+          "types": [
+            "postal_code"
+          ]
+        }
+      ],
+      "formatted_address": "1 Armory St #2, Springfield, MA 01105, USA",
+      "geometry": {
+        "location": {
+          "lat": 42.1073251,
+          "lng": -72.5813903
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+          "northeast": {
+            "lat": 42.10896683029151,
+            "lng": -72.5802842697085
+          },
+          "southwest": {
+            "lat": 42.10626886970851,
+            "lng": -72.5829822302915
+          }
+        }
+      },
+      "navigation_points": [
+        {
+          "location": {
+            "latitude": 42.1078745,
+            "longitude": -72.5818762
+          }
+        }
+      ],
+      "partial_match": true,
+      "place_id": "ChIJ-x7pxQTn5okR2iaygjFNjiM",
+      "plus_code": {
+        "compound_code": "4C49+WC Springfield, MA",
+        "global_code": "87J94C49+WC"
+      },
+      "types": [
+        "establishment",
+        "museum",
+        "point_of_interest",
+        "tourist_attraction"
+      ]
+    }
+  ],
+  "status": "OK"
+}
