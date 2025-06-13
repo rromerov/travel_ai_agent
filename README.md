@@ -75,3 +75,64 @@ uv run bentoml serve
 This will start the API server, and you can access it at `http://localhost:8000`. 
 The `default` section allows you to access the API using the `/generate/recommendation` route.  
 
+## Example Usage
+You can use `CURL` to test the API. For example, you can run the following command to get a recommendation for a trip to Chicago:
+```bash
+curl -X 'GET' \
+  'http://localhost:8000/v1/generate/recommendation?prompt=Recommend%20me%20places%20in%20chicago' \
+  -H 'accept: application/json' \
+  -H 'x-api-key: ${API_KEY}'
+```
+This will return a response like:
+```bash
+"Here’s the weather forecast for Chicago in the upcoming days:\n\n- June 12: Mostly Cloudy\n- June 13: Chance of Rain Showers\n- June 14: Partly Cloudy\n- June 15: Mostly Cloudy\n- June 16-19: Chance of Showers and Thunderstorms\n\nBased on this forecast, here are some recommendations:\n\n### Indoor Activities (Ideal for rainy or cloudy days):\n- **Shedd Aquarium**: Explore marine life from around the globe in this world-class indoor aquarium.\n\n### Outdoor Activities (Best for partly cloudy days like June 14):\n- **Millennium Park**: Enjoy the iconic Cloud Gate sculpture and beautiful outdoor spaces.\n- **Chicago Riverwalk**: Stroll along the scenic riverwalk with views of the city skyline.\n\nFor safety and comfort, prioritize indoor activities during rainy or stormy days. Let me know if you'd like more tailored suggestions!"
+```
+
+## Example using cities outside the US
+You can also try with cities outside the US, like: Monclova, Coahuila, Mexico:
+```bash
+curl -X 'GET' \
+  'http://localhost:8000/v1/generate/recommendation?prompt=Recommend%20me%20places%20in%20monclova%2C%20coahuila' \
+  -H 'accept: application/json' \
+  -H 'x-api-key: ${API_KEY}'
+```
+
+And you will get a response like:
+```bash
+"It seems that Monclova, Coahuila is located in Mexico, not the United States. My expertise is focused on planning weather-aware activities in cities within the United States. Unfortunately, I cannot assist with recommendations for cities outside the U.S.\n\nIf you have a U.S. city in mind, feel free to share it, and I’ll be happy to help!"
+```
+
+## Example of rate limiting by API Key
+You can also test the rate limiting by using the API key multiple times. For example, you can run the following command multiple times:
+
+### Successful request
+```bash
+curl -X 'GET' \
+  'http://localhost:8000/v1/generate/recommendation?prompt=Recommend%20me%20places%20in%20chicago' \
+  -H 'accept: application/json' \
+  -H 'x-api-key: ${API_KEY}'
+```
+
+Response:
+```bash
+"Based on the weather forecast for Chicago, here are some recommendations:\n\n### Weather Forecast:\n- **June 12:** Mostly Cloudy\n- **June 13:** Chance Rain Showers\n- **June 14:** Partly Cloudy\n- **June 15:** Mostly Cloudy\n- **June 16-19:** Chance Showers and Thunderstorms\n\n### Suggested Activities:\n1. **Shedd Aquarium**: Explore marine life from around the globe in this indoor aquarium. Perfect for cloudy or rainy days.\n2. **Art Institute of Chicago**: Dive into art and architecture in this indoor space, ideal for staying dry during rain showers.\n\nLet me know if you'd like more specific recommendations or details!"
+```
+
+### Rate limit exceeded
+```bash
+curl -X 'GET' \
+  'http://localhost:8000/v1/generate/recommendation?prompt=Recommend%20me%20places%20in%20chicago' \
+  -H 'accept: application/json' \
+  -H 'x-api-key: ${API_KEY}'
+```
+
+Response:
+```JSON
+{
+  "detail": "Request rate limit exceeded."
+}
+```
+
+
+
+

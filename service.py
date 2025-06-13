@@ -1,10 +1,12 @@
 import bentoml
-import fastapi
+from fastapi import FastAPI, Depends, HTTPException
 from langchain_community.callbacks.openai_info import OpenAICallbackHandler
 from langchain_core.messages import HumanMessage, SystemMessage
 from src.react_agent_graph import AGENT
+from src.dependencies import rate_limiter, token_limiter
+from src.rate_limiter import TokenBucket
 
-app = fastapi.FastAPI()
+app = FastAPI()
 
 # Callback Handler to get the total amount of tokens consumed
 callback_handler = OpenAICallbackHandler()
@@ -24,10 +26,22 @@ callback_handler = OpenAICallbackHandler()
 )
 
 # Mount the FastAPI app to BentoML
-@bentoml.asgi_app(app = app, path = "/v1")
+@bentoml.asgi_app(app=app, path="/v1")
 class Generate:
     @app.get("/generate/recommendation")
-    def recommender_system(self, prompt: str) -> str:
+    def recommender_system(
+        self,
+        prompt: str,
+        _: None = Depends(rate_limiter),
+        token_bucket: TokenBucket = Depends(token_limiter)
+    ) -> str:
+        estimated_cost = 2500  # Estimated tokens per response
+
+        if not token_bucket.allow_request(cost=estimated_cost):
+            raise HTTPException(
+                status_code=429,
+                detail="Token limit exceeded. Please wait before sending another request."
+            )
         input = {
             "messages": [
                 SystemMessage(
