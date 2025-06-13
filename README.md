@@ -62,5 +62,16 @@ You can see the response from this API [here](results/geocode.json)
 > 1. The first request requires coordinates and returns a response like [this](results/points.json).  
 > 2. The response from the first call includes a second endpoint, which returns the [forecast data seen here](results/forecast.json).
 
+## Run the API
+To run the API, you can use the following command (if you are using a virtual environment):
+```bash
+bentoml serve
+```
 
+or if you are using uv, you can run:
+```bash
+uv run bentoml serve
+```
+This will start the API server, and you can access it at `http://localhost:8000`. 
+The `default` section allows you to access the API using the `/generate/recommendation` route.  
 
