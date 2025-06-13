@@ -1,6 +1,6 @@
 from langchain_core.tools import tool, ToolException
 from langchain.tools.retriever import create_retriever_tool
-from typing import List, Annotated
+from typing import Annotated
 import requests
 import os
 from src.chroma_db_vectorstore import retriever

@@ -53,7 +53,14 @@ Use one of this API keys to access the API:
 
 - [Google Maps Geocoding](https://developers.google.com/maps/documentation/geocoding/requests-geocoding#geocoding-lookup) for converting addresses into geographic coordinates. It offers a free tier with a limited number of requests per month.
 
+You can see the response from this API [here](results/geocode.json)
+
 - [National Weather Service API](https://www.weather.gov/documentation/services-web-api) for retrieving weather data by providing coordinates within US. It provides a free API with no authentication required.
+
+> [!NOTE]  
+> Two responses are generated using this API:  
+> 1. The first request requires coordinates and returns a response like [this](results/points.json).  
+> 2. The response from the first call includes a second endpoint, which returns the [forecast data seen here](results/forecast.json).
 
 
 
