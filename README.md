@@ -1,9 +1,26 @@
 # AI Travel Agent
 
-> [!TIP] This project was built using Python 3.12. For a better experience, you can install Python 3.12 using this command:
+> [!TIP]
+> This project was built using Python 3.12. For a better experience, you can install Python 3.12 using this command:
 
 ```
 uv python install 3.12
+```
+
+> [!NOTE]
+> The LLM used in this project is `gpt-4o`, in particular the one available in Azure AI Fondry. You can change the model in the [`service.py`](service.py) file, particularly in the `recommender_system` function at the `@app.get("/generate/recommendation")` endpoint definition. If you want to use a different model, you can change the `model` parameter in the `build_agent` function.
+
+To initialize this model, set the following environments variables:
+
+```bash
+export AZURE_OPENAI_API_KEY="YOUR_API_KEY"
+export AZURE_OPENAI_ENDPOINT="YOUR_ENDPOINT"
+```
+
+Additionally, you will need the Google Maps Geocoding API, which requires an API key. You can set it using the following environment variable:
+
+```bash
+export GOOGLE_MAPS_API_KEY="YOUR_GOOGLE_MAPS_API_KEY"
 ```
 
 To install all necessary dependencies you can either can use a `virtual environment` or `uv`. 
@@ -29,7 +46,8 @@ If you have `uv` installed, you can install the dependencies with:
 uv add -r requirements.txt
 ```
 
->[!NOTE] If you are using `uv`, you can skip the virtual environment setup as `uv` will handle it for you.
+>[!NOTE]
+> If you are using `uv`, you can skip the virtual environment setup as `uv` will handle it for you.
 
 ## Load API keys
 To use the API, you need a API KEY, these are generated using the following script:

@@ -15,5 +15,7 @@ dependencies = [
     "langchain-tests>=0.3.20",
     "langchain-tools>=0.1.34",
     "langgraph>=0.4.8",
+    "pytest>=8.4.0",
     "requests>=2.32.4",
+    "tree>=0.2.4",
 ]

@@ -1,15 +1,12 @@
 import bentoml
 from fastapi import FastAPI, Depends, HTTPException
-from langchain_community.callbacks.openai_info import OpenAICallbackHandler
 from langchain_core.messages import HumanMessage, SystemMessage
-from src.react_agent_graph import AGENT
+from langchain_openai.chat_models import AzureChatOpenAI
+from src.react_agent_graph import TravelAgent
 from src.dependencies import rate_limiter, token_limiter
 from src.rate_limiter import TokenBucket
 
 app = FastAPI()
-
-# Callback Handler to get the total amount of tokens consumed
-callback_handler = OpenAICallbackHandler()
 
 # Leverage BentoML to create a service
 @bentoml.service(
@@ -26,8 +23,21 @@ callback_handler = OpenAICallbackHandler()
 )
 
 # Mount the FastAPI app to BentoML
-@bentoml.asgi_app(app=app, path="/v1")
+@bentoml.asgi_app(app=app, path="/v1", name="TravelAgentService")
 class Generate:
+    @bentoml.on_startup
+    def start_model(self):
+        # You can replace the model with your desired chat model
+        llm  = TravelAgent(
+            model_provider = AzureChatOpenAI(
+                model = "gpt-4o",
+                azure_deployment = "gpt-4o",
+                temperature = 0.1,
+                api_version = "2024-10-21"
+            )
+        )
+        self.agent = llm.build_and_compile_agent()
+    
     @app.get("/generate/recommendation")
     def recommender_system(
         self,
@@ -66,9 +76,9 @@ class Generate:
             ]
         }
 
-        response = AGENT.invoke(input,
-                                config={
-                                    "callbacks": [callback_handler]
-                                })
+        # Build the agent graph
+        response = self.agent.invoke(
+            input
+            )
         output = response["messages"][-1].content
         return output

@@ -1,5 +1,4 @@
 from langchain_core.documents import Document
-from uuid import uuid4
 
 locations = [
     ("Statue of Liberty", "An iconic outdoor monument in New York Harbor offering city views from the crown.", "outdoor", "New York"),
@@ -58,10 +57,9 @@ DOCUMENTS = [
         metadata = {"name": name,
                     "description": description,
                     "category": category,
-                    "city": city
+                    "city": city,
+                    "source": f"www.travelagent.com/locations?city={city}/index={i}",
                     }
     ) 
-    for name, description, category, city in locations
+    for i, (name, description, category, city) in enumerate(locations)
 ]
-
-UUIDS = [str(uuid4()) for _ in range(len(DOCUMENTS))]
