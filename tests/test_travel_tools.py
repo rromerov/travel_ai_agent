@@ -4,7 +4,7 @@ import unittest
 import warnings
 warnings.filterwarnings("ignore", category=ResourceWarning)
 
-""" class TestTravelTools(unittest.TestCase):
+class TestTravelTools(unittest.TestCase):
     def test_retrieve_customer_location(self):
         self.assertEqual(
             retrieve_customer_location.invoke("New York"),
@@ -27,4 +27,4 @@ warnings.filterwarnings("ignore", category=ResourceWarning)
         with self.assertRaises(ToolException):
             get_weather_data_us.invoke({"latitude": 999.0, "longitude": 999.0})
     if __name__ == "__main__":
-        unittest.main() """
+        unittest.main()

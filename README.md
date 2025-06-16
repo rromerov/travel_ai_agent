@@ -1,16 +1,31 @@
 # AI Travel Agent
 
+This AI travel agent is designed to help suggest places to visit in the United States. It provides personalized recommendations for destinations and activities within the US, taking into account the current weather and user preferences. The system leverages advanced language models and integrates with weather and geocoding APIs to ensure relevant and timely suggestions for your travel plans.
+
 > [!TIP]
 > This project was built using Python 3.12. For a better experience, you can install Python 3.12 using this command:
-
-```
-uv python install 3.12
-```
+> ```
+> uv python install 3.12
+>```
+> Not using `uv`? You can install Python 3.12 using the following command:
+> ```bash
+> curl -LsSf https://astral.sh/uv/install.sh | sh
+> ```
+> Another installation methods are available in the [uv documentation](https://docs.astral.sh/uv/getting-started/installation/#installation-methods). Here you can find installation steps and other guides to help you get started with `uv`.
 
 > [!NOTE]
-> The LLM used in this project is `gpt-4o`, in particular the one available in Azure AI Fondry. You can change the model in the [`service.py`](service.py) file, particularly in the `recommender_system` function at the `@app.get("/generate/recommendation")` endpoint definition. If you want to use a different model, you can change the `model` parameter in the `build_agent` function.
+> The LLM used in this project is `gpt-4o`, in particular the one available in Azure AI Fondry. You can change the model in the [`service.py`](service.py) file, particularly [here you can edit the model](service.py#L32). As you will need to install the LLM provider, you can use the following command to install it:
+>
+> ```bash
+> uv add langchain-{llm_provider} # Replace {llm_provider} with the actual provider name, e.g., deepseek
+> ```
+> or 
+> ```bash
+> pip install langchain-{llm_provider}
+> ``` 
+> This also applies to the `embedding model` used in the project, which is set to `text-embedding-3-large`. You can change it in the following [file](src/travel_agent_tools.py#L101).
 
-To initialize this model, set the following environments variables:
+To initialize this model, set the following environments variables (if you are using Azure OpenAI):
 
 ```bash
 export AZURE_OPENAI_API_KEY="YOUR_API_KEY"
@@ -151,6 +166,15 @@ Response:
 }
 ```
 
+## Unit Tests
+To run the unit tests, you can use the following command if you are using a virtual environment:
+```bash
+python -m unittest discover
+``` 
 
+or if you are using `uv`, you can run:
+```bash
+uv run unittests -m discover
+```
 
 

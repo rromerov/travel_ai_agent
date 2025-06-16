@@ -59,11 +59,11 @@ class ChromaDBVectorStore:
             db_url=self.db_url
         )
         record_manager.create_schema()
-        print(index(
+        index(
             DOCUMENTS,
             record_manager,
             self.vectorstore,
             cleanup="incremental",
             source_id_key="source"
-        ))
+        )
         return self.vectorstore.as_retriever(search_type="mmr")
